@@ -1,0 +1,157 @@
+/* ------------------------------
+           Basic Reset
+------------------------------ */
+// add font
+@import url("https://fonts.googleapis.com/css2?family=Bangers&display=swap");
+
+/* Remove default margins/padding */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Improve text rendering */
+html {
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Make images responsive */
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Remove list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Remove link underlines and set inherit color */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Reset button + input elements */
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+/* Make buttons clickable */
+button,
+a {
+  cursor: pointer;
+  svg {
+    user-select: none;
+    font-size: 1.5rem;
+  }
+}
+
+/* Full-height body */
+html,
+body {
+  height: 100%;
+}
+
+/* Set a natural line-height and font family placeholder */
+body {
+  line-height: 1.5;
+  letter-spacing: 0.1rem;
+  font-family: "Bangers", Arial, Helvetica, sans-serif;
+}
+
+/* Smooth scroll behavior */
+html {
+  // scroll-behavior: smooth;
+}
+
+// font sizes on desktop
+h1 {
+  font-size: 6rem;
+}
+h2 {
+  font-size: 3.5rem;
+}
+h3 {
+  font-size: 2.75rem;
+}
+h4 {
+  font-size: 1.75rem;
+}
+a {
+  font-size: 1.35rem;
+}
+button,
+input {
+  font-size: 1.75rem;
+}
+p {
+  font-weight: 100;
+  font-style: normal;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  a {
+    font-size: 1.5rem;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+header {
+  p {
+    font-size: 1.75rem;
+  }
+}
+nav {
+  a {
+    letter-spacing: 0.2rem;
+  }
+}
+
+.logo {
+  font-size: 1.5rem;
+}
+
+.dangerous-html {
+  em,
+  i {
+    font-style: normal;
+  }
+  h2 {
+    font-size: 1.9rem;
+  }
+  a {
+    pointer-events: none;
+    text-decoration: none;
+  }
+  ul {
+    font-size: 1.25rem;
+    list-style-position: inside;
+    list-style-type: disc;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    letter-spacing: -1px;
+  }
+}

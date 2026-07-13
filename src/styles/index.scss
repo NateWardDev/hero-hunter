@@ -1,0 +1,1031 @@
+// main colors
+$marvel-red: #eb2b24;
+$dc-blue: #0177f2;
+$main-purple: #976caf;
+$light-purple: #ba8bd4;
+
+// background colors
+$background-color: #f0f0f0;
+$grey-background: #181818;
+
+// text colors
+$text-color-black: #0f0f0f;
+$text-color-white: #f0f0f0;
+
+// other things to stay consistent
+$transition: 0.25s ease-in-out;
+$transition-med: 0.55s ease-in-out;
+$transition-long: 0.85s ease-in-out;
+$small-borderRad: 0.25rem;
+$large-borderRad: 1rem;
+$box-shadow: 0px 0.25rem 0.75rem #00000050;
+
+body {
+  background: $background-color;
+  color: $text-color-black;
+}
+
+// padding styles for spacing of parent elements
+section,
+footer {
+  padding: 5rem 5rem 2rem 5rem;
+}
+.topnav {
+  padding: 0.75rem 5rem;
+}
+
+// nav styles
+.topnav {
+  // backdrop-filter: brightness(50%) blur(0.4rem);
+  z-index: 100;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: $grey-background;
+  color: $text-color-white;
+  transition: background-color $transition;
+  .desktop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .logo {
+      margin-right: auto;
+    }
+
+    // search icon
+    .search {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 36px;
+      width: 36px;
+      margin-left: 5%;
+      // below for slight animation
+      transition: $transition;
+      border-radius: 3px;
+      &.active {
+        box-shadow: inset 0 -40px 0 0 $text-color-white;
+        color: $text-color-black;
+      }
+      &:hover {
+        color: $main-purple;
+      }
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      a {
+        padding: 0.25rem;
+        // below for slight animation
+        transition: $transition;
+        &.active {
+          box-shadow: inset 0 -5px 0 0 $background-color;
+          color: $text-color-white;
+        }
+        &:hover {
+          color: $main-purple;
+        }
+      }
+    }
+  }
+  .mobile {
+    display: none;
+    align-items: center;
+    .logo {
+      margin: 0 auto;
+    }
+    // make same size so logo is centers
+    button,
+    .search {
+      height: 36px;
+      width: 36px;
+      color: $text-color-white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    // ham menu
+    button {
+      svg {
+        font-size: 1.75rem;
+      }
+    }
+  }
+  &.active {
+    background: $main-purple;
+  }
+}
+
+.mobile-nav-container {
+  z-index: 99;
+  position: fixed;
+  height: 100dvh;
+  width: 100dvw;
+  background: $main-purple;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 5rem 0;
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  transition: $transition;
+  color: $text-color-white;
+  div {
+    overflow: hidden;
+    a {
+      transition: $transition;
+      display: flex;
+      padding: 0 1rem;
+      font-size: 1.75rem;
+      transform: translateY(100%);
+    }
+    &:nth-child(1) a {
+      transition-delay: 0.1s;
+    }
+    &:nth-child(2) a {
+      transition-delay: 0.2s;
+    }
+    &:nth-child(3) a {
+      transition-delay: 0.3s;
+    }
+    &:nth-child(4) a {
+      transition-delay: 0.4s;
+    }
+  }
+  &.active {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    div {
+      a {
+        transform: translateY(0%);
+      }
+    }
+  }
+}
+
+nav {
+  .logo {
+    padding: 0rem 0.5rem;
+    background: $main-purple;
+    border-radius: 3px;
+  }
+}
+
+// Header for all main pages
+header {
+  background: $grey-background;
+  height: 100dvh;
+  clip-path: polygon(0 0, 100% 0%, 100% 95.5%, 0% 100%);
+  position: relative;
+  color: white;
+  // diffrent sytles for Home Page
+  .text-wrapper {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem 4rem;
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    height: 90%;
+    text-align: left;
+    h1,
+    p {
+      text-shadow: 0 0 0.5rem #000;
+    }
+    p {
+      padding-left: 1rem;
+      max-width: 1024px;
+    }
+  }
+
+  // outside wrapper of carosel
+  .carousel-container {
+    position: absolute;
+    inset: 0;
+    // text and picture
+    .carousel-item {
+      position: absolute;
+      inset: 0;
+      width: 100dvw;
+      // each text
+      .text-wrapper {
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        flex-direction: column;
+        padding: 2rem 4rem;
+        z-index: 2;
+        position: absolute;
+        width: 100%;
+        height: 90%;
+        text-align: left;
+        // for animation
+        transition: opacity $transition;
+        opacity: 0;
+        user-select: none;
+        pointer-events: none;
+        div {
+          overflow: hidden;
+          width: 100%;
+          h1,
+          p {
+            transition: transform $transition-long;
+            transform: translateY(100%);
+            text-shadow: 0 0 0.5rem #000;
+          }
+          p {
+            padding-left: 1rem;
+            max-width: 1024px;
+            transition-delay: 0.25s;
+          }
+        }
+      }
+      //  mobile & desktop images
+      picture {
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        transition: opacity $transition-med;
+        filter: blur(5px) brightness(0.75);
+        // for animation
+        transition: opacity $transition;
+        opacity: 0;
+        user-select: none;
+        pointer-events: none;
+        // Fade Darker from left side
+        &::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0)
+          );
+          pointer-events: none;
+        }
+      }
+
+      // active check and animation
+      &.active {
+        opacity: 1;
+        .text-wrapper {
+          opacity: 1;
+          user-select: auto;
+          pointer-events: all;
+          div {
+            h1,
+            p {
+              transform: translateY(0%);
+            }
+          }
+        }
+        //  mobile & desktop images
+        picture {
+          opacity: 1;
+          filter: blur(0px) brightness(1);
+          user-select: auto;
+          pointer-events: all;
+        }
+      }
+    }
+
+    // control buttons
+    .carousel-controls {
+      position: absolute;
+      z-index: 3;
+      display: flex;
+      bottom: 12%;
+      left: 10%;
+      transform: translate(-10%, 5%);
+      border-radius: $small-borderRad;
+      overflow: hidden;
+      box-shadow: 0 0 1rem #00000079;
+
+      button {
+        padding: 0.75rem 2rem;
+        background: $grey-background;
+        color: $text-color-white;
+        transition: $transition-long;
+        &.active {
+          transition: box-shadow 4s ease-in-out;
+          box-shadow: inset 100px 0 0 0 $main-purple;
+        }
+      }
+    }
+  }
+
+  // make search page head shorter.  Class from data.js
+  &.short {
+    height: 40dvh;
+    .text-wrapper {
+      position: absolute;
+    }
+    picture {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.6),
+          rgba(0, 0, 0, 0)
+        );
+        pointer-events: none;
+      }
+    }
+  }
+  &.med {
+    height: 85dvh;
+  }
+  &.result-header {
+    background-image: url(/public/images/comics_bg_small.webp);
+    background-blend-mode: multiply;
+    height: auto;
+    position: relative;
+    display: flex;
+    padding: 2rem 5rem 3rem 5rem;
+    &.character {
+      picture {
+        aspect-ratio: 1/1;
+        height: 400px;
+        max-height: 40dvh;
+      }
+    }
+    picture {
+      position: relative;
+      aspect-ratio: 13/20;
+      height: 500px;
+    }
+    .text-wrapper {
+      position: relative;
+    }
+  }
+}
+
+// parallax
+.parallax {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+  max-height: 60vh;
+  text-align: center;
+  box-shadow: inset 0 0 100px $text-color-black;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  h4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 2000px;
+    width: 75%;
+    color: $text-color-white;
+    text-shadow: 3px 3px 4px $text-color-black;
+  }
+}
+
+// recommendations / feautired
+.recommendations-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  position: relative;
+  .intro-text {
+    padding: 1rem 0 3.5rem 0;
+    max-width: 1250px;
+    margin: auto auto;
+    text-align: center;
+  }
+  .group-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    button {
+      padding: 0.75rem 0;
+      min-width: 200px;
+      max-width: 350px;
+      width: calc(25% - 1.5rem);
+      border-left: 1px solid $grey-background;
+      border-right: 1px solid $grey-background;
+      height: 100%;
+      transition: $transition;
+      background: $grey-background;
+      color: $text-color-white;
+      clip-path: polygon(100% 0, 100% 75%, 95% 100%, 0 100%, 0 25%, 5% 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      &:hover {
+        color: $dc-blue;
+        &.marvel-red {
+          color: $marvel-red;
+        }
+        &.active {
+          color: $text-color-white;
+        }
+      }
+      img {
+        height: 2.2rem;
+        width: 2.2rem;
+        margin-left: 1rem;
+        aspect-ratio: 1/ 1;
+      }
+
+      &.active {
+        background: $dc-blue;
+        color: $text-color-white;
+        &.marvel-red {
+          background: $marvel-red;
+        }
+      }
+    }
+  }
+  .groups {
+    position: relative;
+
+    .group-container {
+      position: relative; // stays in normal flow
+      width: 100%;
+      transition: all 0.3s ease;
+      transition: $transition-med;
+
+      &.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      &.hidden {
+        transform: translateY(50px);
+        opacity: 0;
+        display: none;
+      }
+    }
+  }
+}
+
+// groups on diffrent pages
+.group-container {
+  max-width: 2000px;
+  margin: auto auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 3.5rem;
+  margin-bottom: 7rem;
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    .head-text {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+    .cards {
+      display: flex;
+      flex-direction: row;
+      align-items: start;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      .card {
+        width: calc(20% - 1.2rem);
+        background-color: $grey-background;
+        overflow: hidden;
+        transition: $transition;
+        .img-wrapper {
+          overflow: hidden;
+          img {
+            transition: $transition;
+            aspect-ratio: 1/1;
+          }
+        }
+        p {
+          color: $text-color-white;
+          padding: 0.25rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        &:hover {
+          background: $main-purple;
+          img {
+            transform: scale(1.05);
+          }
+        }
+        &.character {
+          clip-path: polygon(100% 0, 100% 96%, 95% 100%, 0 100%, 0 4%, 5% 0);
+          .img-wrapper {
+            overflow: hidden;
+
+            img {
+              transition: $transition;
+              aspect-ratio: 1/1;
+            }
+          }
+        }
+
+        &.comic {
+          clip-path: polygon(100% 0, 100% 97%, 95% 100%, 0 100%, 0 3%, 5% 0);
+          .img-wrapper {
+            overflow: hidden;
+
+            img {
+              transition: $transition;
+              aspect-ratio: 13/20;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// search results on search page
+.search-results {
+  max-width: 2000px;
+  margin: auto auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 3.5rem;
+  .content-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+
+    .card {
+      width: calc(20% - 1.2rem);
+      background-color: $grey-background;
+      overflow: hidden;
+      transition: $transition;
+      .img-wrapper {
+        overflow: hidden;
+        img {
+          transition: $transition;
+          aspect-ratio: 1/1;
+          object-position: top;
+        }
+      }
+      p {
+        color: $text-color-white;
+        padding: 0.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      &:hover {
+        background: $dc-blue;
+        &.marvel-red {
+          background: $marvel-red;
+        }
+        img {
+          transform: scale(1.05);
+        }
+      }
+      &.character {
+        clip-path: polygon(100% 0, 100% 96%, 95% 100%, 0 100%, 0 4%, 5% 0);
+      }
+      &.comic {
+        clip-path: polygon(100% 0, 100% 97%, 95% 100%, 0 100%, 0 3%, 5% 0);
+        .img-wrapper {
+          overflow: hidden;
+
+          img {
+            transition: $transition;
+            aspect-ratio: 13/20;
+          }
+        }
+      }
+    }
+  }
+}
+
+.dangerous-html {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  figure {
+    display: none;
+  }
+  a {
+    pointer-events: none;
+    text-decoration: none;
+  }
+}
+
+// for single page of comic or character
+.api-page-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  .group-controls {
+    margin: 0;
+  }
+}
+
+// about section
+.about {
+  display: flex;
+  gap: 2rem;
+  margin: auto auto;
+  max-width: 2000px;
+  .text {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .img-wrapper {
+    box-shadow: $box-shadow;
+    border-radius: $small-borderRad;
+    overflow: hidden;
+    width: 40%;
+  }
+}
+
+// footer
+footer {
+  margin-top: 2rem;
+  padding: 4rem;
+  background: $grey-background;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  p {
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+  hr {
+    margin-top: 3rem;
+    border: none;
+    background: #fff;
+    width: 100%;
+    height: 3px;
+    opacity: 0.75;
+    border-radius: 5px;
+  }
+  .logo {
+    background: $main-purple;
+    padding: 0rem 0.5rem;
+  }
+  .footer-nav {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    width: 100%;
+    ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+// search
+form {
+  max-width: 1250px;
+  margin: auto auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .submit {
+    border-radius: $small-borderRad;
+    overflow: hidden;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    input {
+      padding: 0.5rem 1.5rem;
+      width: 100%;
+      box-shadow: inset 0 -5px 0 0 $grey-background;
+    }
+    button {
+      padding: 0.5rem 1.5rem;
+      transition: $transition;
+      background: $grey-background;
+      color: $text-color-white;
+      clip-path: polygon(100% 0, 100% 75%, 90% 100%, 0 100%, 0 25%, 10% 0);
+      &:hover {
+        background: $light-purple;
+      }
+    }
+  }
+  .search-values {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 1rem 0;
+    .buttons-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      button {
+        background: $grey-background;
+        color: $text-color-white;
+        padding: 0.25rem 01.25rem;
+        transition: $transition;
+        clip-path: polygon(100% 0, 100% 75%, 90% 100%, 0 100%, 0 25%, 10% 0);
+        &:hover {
+          color: $main-purple;
+        }
+        &.active {
+          background: $main-purple;
+          color: $text-color-white;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  section,
+  footer {
+    padding: 2rem 2rem;
+  }
+  .topnav {
+    padding: 0.75rem 2.5rem;
+  }
+
+  header {
+    .carousel-container {
+      .carousel-item {
+        .text-wrapper {
+          padding: 2rem;
+        }
+      }
+    }
+
+    &.result-header {
+      height: auto;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem 5rem 2rem;
+      picture {
+        overflow: hidden;
+        aspect-ratio: 13/20;
+      }
+      .text-wrapper {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0;
+        width: 100%;
+      }
+    }
+  }
+
+  // recommendations / feautired
+  .group-container {
+    width: 100%;
+    .content-wrapper {
+      .cards {
+        .card {
+          width: calc(33% - 0.85rem);
+        }
+      }
+    }
+  }
+
+  .search-results {
+    width: 100%;
+    .content-wrapper {
+      .card {
+        width: calc(33% - 0.87rem);
+      }
+    }
+  }
+
+  // .about
+  .about {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    .text {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .img-wrapper {
+      width: 100%;
+      height: 400px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  // changing padding
+  section,
+  footer {
+    padding: 2rem 1rem;
+  }
+  .topnav {
+    padding: 0.75rem 1rem;
+    .desktop {
+      display: none;
+    }
+    .mobile {
+      display: flex;
+    }
+  }
+
+  // mobile nav
+
+  header {
+    height: 120dvh;
+    clip-path: polygon(0 0, 100% 0%, 100% 97%, 0% 100%);
+
+    // for all sized headers
+    &.med {
+      height: 120dvh;
+    }
+
+    // search page
+    &.short {
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column-reverse;
+      .text-wrapper {
+        text-align: center;
+        position: relative;
+        padding: 0rem 0.75rem 3.5em 0.75rem;
+        h1 {
+          width: 100%;
+        }
+      }
+      picture {
+        position: relative;
+        height: 40dvh;
+        width: 100%;
+        &::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0)
+          );
+          pointer-events: none;
+        }
+      }
+    }
+
+    // diffrent sytles for Home Page
+    &.home {
+      display: flex;
+      flex-direction: column-reverse;
+      height: auto;
+      .text-wrapper {
+        padding: 1.25rem 0.75rem 4rem 0.75rem;
+        height: auto;
+        position: relative;
+        justify-content: start;
+        width: 100%;
+        height: auto;
+        h1,
+        p {
+          width: 100%;
+          text-align: center;
+        }
+      }
+      .carousel-container {
+        position: relative;
+        height: 60dvh;
+        max-height: 60dvh;
+        min-height: 60dvh;
+        .carousel-controls {
+          top: 100%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          bottom: unset;
+          button {
+            padding: 0.5rem 2rem;
+          }
+        }
+      }
+    }
+
+    // outside wrapper of carosel
+    &.med {
+      height: 120dvh;
+      .carousel-container {
+        position: absolute;
+        .carousel-item {
+          display: flex;
+          flex-direction: column-reverse;
+          .text-wrapper {
+            height: 45%;
+            margin-top: 1rem;
+            position: relative;
+            padding: 0.75rem;
+            display: flex;
+            align-items: start;
+            justify-content: start;
+            flex-direction: column;
+            height: 60dvh;
+            min-height: 60dvh;
+            max-height: 60dvh;
+            div {
+              text-align: center;
+              p {
+                padding-left: 0rem;
+              }
+            }
+          }
+          picture {
+            position: relative;
+            height: 60dvh;
+            min-height: 60dvh;
+            max-height: 60dvh;
+            aspect-ratio: 1 / 1;
+            // get rid of fade on left side
+            &::before {
+              background: none;
+            }
+          }
+        }
+        .carousel-controls {
+          top: 48.5%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          bottom: unset;
+          button {
+            padding: 0.5rem 2rem;
+          }
+        }
+      }
+    }
+
+    &.result-header {
+      picture {
+        height: 400px;
+      }
+    }
+  }
+
+  // recommendations / feautired
+  .group-container {
+    width: 100%;
+    .content-wrapper {
+      .cards {
+        gap: 0.75rem;
+        .card {
+          width: calc(33% - 0.75rem);
+        }
+      }
+    }
+  }
+  .search-results {
+    width: 100%;
+    .content-wrapper {
+      gap: 0.75rem;
+      .card {
+        width: calc(33% - 0.75rem);
+      }
+    }
+  }
+}
