@@ -1,17 +1,15 @@
+import { useState } from "react";
 import { Link } from "react-router";
 
-const Character = ({
-  character,
-  characterComicList,
-  setCharacterComicList,
-  setComic,
-}) => {
+const Character = ({ character, setComic }) => {
+  const [soloComics, setSoloComics] = useState([]);
+
   const handleComicsCall = () => {
     const apiKey = import.meta.env.VITE_COMIC_VINE_API_KEY;
 
     const comicsUrl = `/comicvine/search/?api_key=${apiKey}&format=json&query=${character.name}&resources=volume`;
 
-    callApi(comicsUrl, setCharacterComicList);
+    callApi(comicsUrl, setSoloComics);
   };
 
   const callApi = async (url, setState) => {
@@ -76,7 +74,7 @@ const Character = ({
 
         <div className="search-results">
           <div className="content-wrapper">
-            {characterComicList.map((comic) => (
+            {soloComics.map((comic) => (
               <Link
                 to={`/comic/${comic.id}`}
                 className={`card comic ${comic.publisher?.name === "Marvel" ? "marvel-red" : ""}`}

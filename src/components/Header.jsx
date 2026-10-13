@@ -144,13 +144,15 @@ const SearchHeader = ({ headerItem }) => {
 
 // buttons
 const CarouselControls = ({ setActiveSlide, headerItem, activeSlide }) => {
+  const pathname = useLocation().pathname;
+
   return (
     <div className="carousel-controls">
       {headerItem.carousel.map((item) => (
         <button
           key={item.index}
           onClick={() => setActiveSlide(item.index)}
-          className={activeSlide === item.index ? "active" : ""}
+          className={`${activeSlide === item.index ? "active" : ""} ${pathname === "/marvel" ? "marvel-red" : ""} ${pathname === "/dc" ? "dc-blue" : ""}`}
         >
           {item.index}
         </button>

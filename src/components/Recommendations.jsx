@@ -20,7 +20,7 @@ const Recommendations = ({ setComic, setCharacter }) => {
           <button
             onClick={() => setActiveGroup(names.index)}
             key={names.index}
-            className={activeGroup === names.index ? "active" : ""}
+            className={`${activeGroup === names.index ? "active" : ""} ${pathname === "/marvel" ? "marvel-red" : ""} ${pathname === "/dc" ? "dc-blue" : ""}`}
           >
             {names.name}
             <img src={names.logo} alt={`${names.name} logo`} />
@@ -46,7 +46,7 @@ const Recommendations = ({ setComic, setCharacter }) => {
                 {group.characters.map((character) => (
                   <Link
                     to={`/character/${character.id}`}
-                    className="card character"
+                    className={`card character ${pathname === "/marvel" ? "marvel-red" : ""}`}
                     key={character.id}
                     onClick={() => setCharacter(character)}
                   >
@@ -71,7 +71,7 @@ const Recommendations = ({ setComic, setCharacter }) => {
                 {group.comics.map((comic) => (
                   <Link
                     to={`/comic/${comic.id}`}
-                    className="card comic"
+                    className={`card comic ${pathname === "/marvel" ? "marvel-red" : ""}`}
                     key={comic.id}
                     onClick={() => setComic(comic)}
                   >

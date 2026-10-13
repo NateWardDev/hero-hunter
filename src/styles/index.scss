@@ -1,8 +1,8 @@
 // main colors
-$marvel-red: #eb2b24;
-$dc-blue: #0177f2;
-$main-purple: #976caf;
-$light-purple: #ba8bd4;
+$marvel-red: #d30125;
+$dc-blue: #0567d0;
+$main-purple: #86609b;
+$light-purple: #be8ed7;
 
 // background colors
 $background-color: #f0f0f0;
@@ -80,7 +80,7 @@ footer {
         // below for slight animation
         transition: $transition;
         &.active {
-          box-shadow: inset 0 -5px 0 0 $background-color;
+          box-shadow: inset 0 -3px 0 0 $background-color;
           color: $text-color-white;
         }
         &:hover {
@@ -309,10 +309,38 @@ header {
         padding: 0.75rem 2rem;
         background: $grey-background;
         color: $text-color-white;
-        transition: $transition-long;
+        transition: $transition-med;
+        &:hover {
+          color: $main-purple;
+        }
         &.active {
           transition: box-shadow 4s ease-in-out;
           box-shadow: inset 100px 0 0 0 $main-purple;
+          &:hover {
+            color: $text-color-white;
+          }
+        }
+        &.marvel-red {
+          &:hover {
+            color: $marvel-red;
+          }
+          &.active {
+            box-shadow: inset 100px 0 0 0 $marvel-red;
+            &:hover {
+              color: $text-color-white;
+            }
+          }
+        }
+        &.dc-blue {
+          &:hover {
+            color: $dc-blue;
+          }
+          &.active {
+            box-shadow: inset 100px 0 0 0 $dc-blue;
+            &:hover {
+              color: $text-color-white;
+            }
+          }
         }
       }
     }
@@ -432,9 +460,6 @@ header {
       flex-direction: row;
       &:hover {
         color: $dc-blue;
-        &.marvel-red {
-          color: $marvel-red;
-        }
         &.active {
           color: $text-color-white;
         }
@@ -446,12 +471,21 @@ header {
         aspect-ratio: 1/ 1;
       }
 
+      &.marvel-red {
+        &.active {
+          background: $marvel-red;
+          &:hover {
+            color: $text-color-white;
+          }
+        }
+        &:hover {
+          color: $marvel-red;
+        }
+      }
+
       &.active {
         background: $dc-blue;
         color: $text-color-white;
-        &.marvel-red {
-          background: $marvel-red;
-        }
       }
     }
   }
@@ -525,9 +559,14 @@ header {
           justify-content: center;
         }
         &:hover {
-          background: $main-purple;
+          background: $dc-blue;
           img {
             transform: scale(1.05);
+          }
+        }
+        &.marvel-red {
+          &:hover {
+            background: $marvel-red;
           }
         }
         &.character {
@@ -561,6 +600,7 @@ header {
 // search results on search page
 .search-results {
   max-width: 2000px;
+  width: 100%;
   margin: auto auto;
   display: flex;
   flex-direction: column;
@@ -573,6 +613,7 @@ header {
     justify-content: start;
     gap: 1.5rem;
     flex-wrap: wrap;
+    width: 100%;
 
     .card {
       width: calc(20% - 1.2rem);
@@ -706,6 +747,9 @@ footer {
       align-items: center;
       gap: 1rem;
       flex-wrap: wrap;
+      a:hover {
+        text-decoration: underline;
+      }
     }
   }
 }
